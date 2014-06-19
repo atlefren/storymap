@@ -5,7 +5,11 @@ Storymap is a jQuery-plugin to create a map that follows your text. Annotate eac
 
 Demo
 ----
-Coming soon
+See http://atlefren.github.io/storymap/ 
+
+Known issues
+------------
+Will not work well on mobile (map gets removed on small screens)
 
 Requirements
 ------------
