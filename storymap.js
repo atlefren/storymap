@@ -1,4 +1,4 @@
-(function ($) {
+    (function ($) {
     'use strict';
 
 
@@ -101,13 +101,16 @@
 
             var map = settings.createMap();
 
+            var initPoint = map.getCenter();
+            var initZoom = map.getZoom();
+
             var fg = L.featureGroup().addTo(map);
 
             function showMapView(key) {
 
                 fg.clearLayers();
                 if (key === 'overview') {
-                    map.setView([65, 18], 5, true);
+                    map.setView(initPoint, initZoom, true);
                 } else if (markers[key]) {
                     var marker = markers[key];
                     fg.addLayer(L.marker([marker.lat, marker.lon]));
