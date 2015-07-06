@@ -1,3 +1,13 @@
+Notes
+-----
+
+this is a fork from : https://github.com/atlefren/storymap)
+
+Changes :
+
+* Optional additionnal leaflet layers for each markers
+
+
 Storymap
 ========
 
