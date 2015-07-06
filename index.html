@@ -37,6 +37,13 @@
                 <p>In at molestie nulla, at molestie nulla. Donec ut vehicula velit, sed scelerisque sapien. Proin sodales laoreet dapibus. Phasellus in tristique orci. Morbi iaculis vestibulum magna, et fermentum lacus ornare non. Quisque malesuada et dolor ac mollis. Duis egestas ullamcorper dui, vel rhoncus nisl congue ut. Nunc feugiat velit at congue congue. Suspendisse sapien ligula, gravida non rhoncus ut, porta ut ipsum. In urna orci, scelerisque non sem et, condimentum feugiat lorem. Nam nec nunc nisl.</p>
             </section>
 
+   <section  data-place="balkash">
+                <h2>Balkash</h2>
+                <p>Etiam nec vulputate tellus. Mauris varius aliquam congue. Etiam ac dolor sed felis pellentesque iaculis. In hac habitasse platea dictumst. Vivamus bibendum, nisi id tempor fringilla, augue velit posuere eros, vel mollis massa nisl eget mi. In sit amet libero quis ipsum bibendum pulvinar. In hac habitasse platea dictumst. Vestibulum congue justo erat, a vulputate nibh aliquet vitae. Morbi accumsan lobortis diam, ut aliquet est venenatis sit amet.</p>
+                <p>Vestibulum eleifend varius nisi vitae mattis. Proin egestas diam eu justo porta feugiat. Phasellus nec nisl congue elit mattis facilisis. Sed semper lorem in elementum facilisis. Mauris malesuada at felis sit amet commodo. Cras egestas nec metus nec aliquet. Suspendisse at feugiat elit, at tincidunt odio. Etiam ac magna justo. Nunc eget congue augue. Mauris eget arcu non purus rutrum accumsan vitae condimentum ligula. Sed blandit interdum neque, in adipiscing ligula placerat vel.</p>
+                <p>In at molestie nulla, at molestie nulla. Donec ut vehicula velit, sed scelerisque sapien. Proin sodales laoreet dapibus. Phasellus in tristique orci. Morbi iaculis vestibulum magna, et fermentum lacus ornare non. Quisque malesuada et dolor ac mollis. Duis egestas ullamcorper dui, vel rhoncus nisl congue ut. Nunc feugiat velit at congue congue. Suspendisse sapien ligula, gravida non rhoncus ut, porta ut ipsum. In urna orci, scelerisque non sem et, condimentum feugiat lorem. Nam nec nunc nisl.</p>
+            </section>
+
             <section  data-place="stavanger">
                 <h2>Stavanger</h2>
                 <p>Nullam scelerisque lobortis neque, in accumsan libero volutpat eget. Quisque facilisis bibendum urna, a tincidunt leo sollicitudin ac. Nunc quis magna nec erat semper mattis mollis eget lacus. Pellentesque sodales vitae nisl nec pulvinar. Ut sodales nisl in dignissim placerat. In hac habitasse platea dictumst. Phasellus convallis vel magna eu tristique.</p>
@@ -90,8 +97,21 @@
     (function () {
         'use strict';
 
+        // additional layers
+        var layers = {
+          'test' : L.tileLayer.wms('http://limes.grid.unep.ch/geoserver/wms?', {
+              layers: 'limes:Balkash_173_20140830_LC8_NDVI',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 0,
+              continuousWorld: true
+              })
+        };
 
         var markers = {
+            balkash: {lat: 46.1667, lon: 74.3333, zoom: 7, layer:layers['test']},
             oslo: {lat: 59.92173, lon: 10.75719, zoom: 7},
             trondheim: {lat: 63.4319, lon: 10.3988, zoom: 7},
             bergen: {lat: 60.3992, lon: 5.3227, zoom: 7},
