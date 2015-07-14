@@ -113,6 +113,10 @@
                     map.setView(initPoint, initZoom, true);
                 } else if (markers[key]) {
                     var marker = markers[key];
+                    var layer = marker.layer;
+                    if(typeof layer !== 'undefined'){
+                      fg.addLayer(layer);
+                    };
                     fg.addLayer(L.marker([marker.lat, marker.lon]));
 
                     map.setView([marker.lat, marker.lon], marker.zoom, 1);
