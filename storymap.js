@@ -114,7 +114,7 @@
                 } else if (markers[key]) {
                     var marker = markers[key];
                     var layer = marker.layer;
-                    if(typeof layer!='undefined'){
+                    if(typeof layer !== 'undefined'){
                       fg.addLayer(layer);
                     };
                     fg.addLayer(L.marker([marker.lat, marker.lon]));
