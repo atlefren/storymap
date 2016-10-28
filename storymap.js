@@ -40,7 +40,7 @@
             var d1 = top - dist;
 
             if (d1 < 0) {
-                return $(window).height();
+                return $(document).height();
             }
             return d1;
 
