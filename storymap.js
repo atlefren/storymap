@@ -17,7 +17,12 @@
                 }).addTo(map);
 
                 return map;
-            }
+            },
+            markerOptions: {
+              radius: 5,
+              color: '#de2d26'
+            },
+            clustering: true
         };
 
         var settings = $.extend(defaults, options);
@@ -77,7 +82,7 @@
             });
         }
 
-        var makeStoryMap = function (element, markers) {
+        var makeStoryMap = function (element, markers, markerOptions) {
 
             var topElem = $('<div class="breakpoint-current"></div>')
                 .css('top', settings.breakpointPos);
@@ -106,20 +111,50 @@
 
             var fg = L.featureGroup().addTo(map);
 
+            var clusteredMarkers = L.markerClusterGroup({
+              showCoverageOnHover: false,
+              maxClusterRadius: 50
+            });
+
             function showMapView(key) {
 
                 fg.clearLayers();
+
+                clusteredMarkers.clearLayers();
+
                 if (key === 'overview') {
                     map.setView(initPoint, initZoom, true);
                 } else if (markers[key]) {
                     var marker = markers[key];
+                    var center = marker.center;
+                    var photos = marker.photos;
                     var layer = marker.layer;
                     if(typeof layer !== 'undefined'){
                       fg.addLayer(layer);
                     };
-                    fg.addLayer(L.marker([marker.lat, marker.lon]));
+                    // change to circleMarker so marker is more easily customized
+                    //fg.addLayer(L.circleMarker([center.lat, center.lon], markerOptions));
 
-                    map.setView([marker.lat, marker.lon], marker.zoom, 1);
+                    // add photos
+                    for (var i = 0; i < photos.length; i++) {
+                      console.log(settings.clustering);
+                      if (settings.clustering == true) {
+
+                        clusteredMarkers.addLayer(L.circleMarker([photos[i].lat, photos[i].lon], markerOptions)
+                          .bindTooltip("<img class='tooltip-image' src='"+photos[i].url+"'>"));
+
+                        fg.addLayer(clusteredMarkers);
+
+                      } else {
+
+                        fg.addLayer(L.circleMarker([photos[i].lat, photos[i].lon], markerOptions)
+                          .bindTooltip("<img class='tooltip-image' src='"+photos[i].url+"'>"));
+
+                      }
+
+                    }
+
+                    map.setView([center.lat, center.lon], center.zoom, 1);
                 }
 
             }
@@ -129,7 +164,7 @@
             });
         };
 
-        makeStoryMap(this, settings.markers);
+        makeStoryMap(this, settings.markers, settings.markerOptions);
 
         return this;
     }
