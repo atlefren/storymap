@@ -137,7 +137,7 @@
 
                     // add photos
                     for (var i = 0; i < photos.length; i++) {
-                      console.log(settings.clustering);
+                      
                       if (settings.clustering == true) {
 
                         clusteredMarkers.addLayer(L.circleMarker([photos[i].lat, photos[i].lon], markerOptions)
